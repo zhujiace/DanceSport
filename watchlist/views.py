@@ -138,14 +138,14 @@ def Mixer(filepath1,format,filepath2,filename,delay,volume,speed,speed2):
         sound1=AudioSegment.from_mp3(filepath1)
     elif format=='wav':
         sound1=AudioSegment.from_wav(filepath1)
-    sound2=AudioSegment.from_wav(filepath2)
+    sound2=AudioSegment.from_mp3(filepath2)
     sound2_speed_changed=speed_change(sound2,speed)
     # sound1_speed_changed=speed_change(sound1,speed)
     soundtmp=sound1.overlay(sound2_speed_changed,position=delay,gain_during_overlay=volume)
     # soundOutput=sound1.overlay(sound2_speed_changed,position=delay,gain_during_overlay=volume)
     soundOutput=speed_change(soundtmp,speed)
     # soundOutput=sound1_speed_changed
-    soundOutput.export(filename,format="wav")
+    soundOutput.export(filename,format="mp3")
 
 UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER  # 设置文件上传的目标文件夹
