@@ -29,7 +29,7 @@ from watchlist.models import User, Movie
 #     return render_template('index.html', movies=movies)
 @app.route('/')
 def index():
-    return redirect(url_for('login'))
+    return redirect(url_for('upload_test_0'))
 
 
 @app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
@@ -78,7 +78,7 @@ def settings():
         user.name = name
         db.session.commit()
         flash('Settings updated.')
-        return redirect(url_for('index'))
+        return redirect(url_for('upload_test_0'))
 
     return render_template('settings.html')
 
@@ -111,7 +111,7 @@ def login():
 def logout():
     logout_user()
     flash('Goodbye.')
-    return redirect(url_for('upload_test_0'))
+    return redirect(url_for('login'))
 
 import os
 import time
