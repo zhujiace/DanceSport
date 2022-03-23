@@ -30,10 +30,10 @@
 {% extends 'base.html' %}   <!-- 继承的声明 -->
 
 {% block content %}
-<p>{{ movies|length }} Titles</p>
+<!-- <p>{{ movies|length }} Titles</p> -->
 
 <!-- 在模板中可以直接使用 current_user 变量 -->
-{% if current_user.is_authenticated %}
+<!-- {% if current_user.is_authenticated %}
 <form method="post">
     Name <input type="text" name="title" autocomplete="off" required>
     Year <input type="text" name="year" autocomplete="off" required>
@@ -55,6 +55,7 @@
         </span>
     </li>
     {% endfor %}
-</ul>
+</ul> -->
+<h2>欢迎使用 体育舞蹈音乐辅助工具</h2>
 <img alt="Walking Totoro" class="totoro" src="{{ url_for('static', filename='images/totoro.gif') }}" title="to~to~ro~">
 {% endblock %}

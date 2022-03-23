@@ -6,27 +6,30 @@ from watchlist import app, db
 from watchlist.models import User, Movie
 
 
-@app.route('/', methods=['GET', 'POST'])
+# @app.route('/', methods=['GET', 'POST'])
+# def index():
+#     if request.method == 'POST':
+#         if not current_user.is_authenticated:
+#             return redirect(url_for('index'))
+
+#         title = request.form['title']
+#         year = request.form['year']
+
+#         if not title or not year or len(year) > 4 or len(title) > 60:
+#             flash('Invalid input.')
+#             return redirect(url_for('index'))
+
+#         movie = Movie(title=title, year=year)
+#         db.session.add(movie)
+#         db.session.commit()
+#         flash('Item created.')
+#         return redirect(url_for('index'))
+
+#     movies = Movie.query.all()
+#     return render_template('index.html', movies=movies)
+@app.route('/')
 def index():
-    if request.method == 'POST':
-        if not current_user.is_authenticated:
-            return redirect(url_for('index'))
-
-        title = request.form['title']
-        year = request.form['year']
-
-        if not title or not year or len(year) > 4 or len(title) > 60:
-            flash('Invalid input.')
-            return redirect(url_for('index'))
-
-        movie = Movie(title=title, year=year)
-        db.session.add(movie)
-        db.session.commit()
-        flash('Item created.')
-        return redirect(url_for('index'))
-
-    movies = Movie.query.all()
-    return render_template('index.html', movies=movies)
+    return redirect(url_for('login'))
 
 
 @app.route('/movie/edit/<int:movie_id>', methods=['GET', 'POST'])
@@ -95,7 +98,7 @@ def login():
         if username == user.username and user.validate_password(password):
             login_user(user)
             flash('Login success.')
-            return redirect(url_for('index'))
+            return redirect(url_for('upload_test_0'))
 
         flash('Invalid username or password.')
         return redirect(url_for('login'))
@@ -108,7 +111,7 @@ def login():
 def logout():
     logout_user()
     flash('Goodbye.')
-    return redirect(url_for('index'))
+    return redirect(url_for('upload_test_0'))
 
 import os
 import time
