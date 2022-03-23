@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+input[type=text], select {
+  width: 50%;
+  padding: 15px 20px;
+  margin: 10px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.fu {
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  padding: 20px;
+   width: 93%;
+}
+</style>
+
+<div class="fu">
+<h2>音乐库</h2>
+<br>音乐</br>
+<form method="post" action="/findmusic" enctype="multipart/form-data">
+    <input id="File2" type="text" name="beat" list="typelist" placeholder="请选择" autocomplete="off" required><br><br>
+        <datalist id="typelist">
+            {% for beat in beats %}
+            <option>{{ beat.name }}</option>
+            {% endfor %}
+        </datalist>
+    <input class="btn" type="submit" name="submit" value="Submit"><br><br>
+</form>
+    
+{% if filename != "None "%}
+<br>播放</br>
+<audio src="{{ url_for('static',filename='beats/'+filename) }}" controls></audio>
+{% endif %}
+</div>
+
+{% endblock %}

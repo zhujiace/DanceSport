@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    input[type=text], select {
+      width: 50%;
+      padding: 15px 20px;
+      margin: 10px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+    input[type=password], select {
+      width: 50%;
+      padding: 15px 20px;
+      margin: 10px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-sizing: border-box;
+    }
+    .fu {
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      padding: 20px;
+       width: 93%;
+    }
+     .btn {
+        width: 50%;
+        font-size: 15px;
+        padding: 10px 10px;
+        text-decoration: none;
+        cursor: pointer;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        border: 1px solid #ccc;
+        border-radius: 10px;
+     }
+    </style>
+<div class="fu">
+<h3>Login</h3>
+<form method="post">
+    Username<br>
+    <input type="text" name="username" required><br><br>
+    Password<br>
+    <input type="password" name="password" required><br><br>
+    <input class="btn" type="submit" name="submit" value="Submit">
+</form>
+</div>
+{% endblock %}
+

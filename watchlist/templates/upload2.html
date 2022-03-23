@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    input[type=text], select {
+        width: 50%;
+        padding: 15px 20px;
+        margin: 10px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+      input[type=number], select {
+        width: 50%;
+        padding: 15px 20px;
+        margin: 10px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-sizing: border-box;
+      }
+      .fu {
+      border-radius: 10px;
+      background-color: #f2f2f2;
+      padding: 20px;
+       width: 93%;
+      }
+      .btn {
+        width: 50%;
+        font-size: 15px;
+        padding: 10px 10px;
+        text-decoration: none;
+        cursor: pointer;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+    .DownButtonNormal{ /*设计该类的所有格式*/
+        width: 13%;
+        font-size: 15px;
+        padding: 10px 10px;
+        text-decoration: none;
+        cursor: pointer;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        border: 1px solid #ccc;
+        border-radius: 10px;
+     }
+    </style>  
+<div class="fu">
+<h3>Music Mixer</h3>
+<form id="form1" method="post" action="/api" enctype="multipart/form-data">
+    Music<br>
+    <input id="File1" type="file" name="myfile" autocomplete="off" required/><br><br>  <!--后台代码中获取文件是通过form的name来标识的-->
+    Beat<br>
+    <input id="File2" type="text" name="beat" list="typelist" placeholder="请选择" autocomplete="off" required><br><br>
+        <datalist id="typelist">
+            {% for beat in beats %}
+            <option>{{ beat.name }}</option>
+            {% endfor %}
+        </datalist>
+    Delay<br>
+    <input id="Pos" type="number" name="pos" value="0" autocomplete="off" required>ms<br><br>
+    Beat Speed<br>
+    <input id="Speed" type="text" name="speed" value="1" autocomplete="off" required><br><br>
+    Beat Volume<br>
+    <input id="Volume" type="number" name="vol" value="0" autocomplete="off" required><br>
+    (注：为被覆盖音频的音量)<br><br>
+    Music Speed<br>
+    <input id="Speed2" type="text" name="speed2" value="1" autocomplete="off" required><br><br>
+    <input class="btn" type="submit" name="submit" value="Submit"><br><br>
+</form>
+
+{% if filename != "None "%}
+Audition<br>
+<audio src="{{ url_for('static',filename='Mixed/'+filename) }}" controls></audio><br><br>
+<a class="DownButtonNormal" name="DownLoadHistEvent" download="{{filename}}" href="{{url_for('static',filename='Mixed/'+filename)}}">Download</a>
+{% endif %}
+</div>
+{% endblock %}
