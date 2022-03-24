@@ -116,7 +116,7 @@ def logout():
 import os
 import time
 from flask import send_from_directory
-from watchlist.models import Beat
+from watchlist.models import Beat, Music
 
 from pydub import AudioSegment
 from pydub import effects
@@ -218,12 +218,12 @@ def api_upload():
 
 @app.route('/music/<filename>')
 def musicplay(filename):
-    beats=Beat.query.all()
+    beats=Music.query.all()
     return render_template('music.html',beats=beats,filename=filename)
 
 @app.route('/music')
 def music():
-    beats=Beat.query.all()
+    beats=Music.query.all()
     return render_template('music.html',beats=beats,filename="None")
     # return render_template('music.html',beats=beats,filename="None")
 

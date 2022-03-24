@@ -2,7 +2,7 @@
 import click
 import os
 from watchlist import app, db
-from watchlist.models import User, Movie, Beat
+from watchlist.models import User, Movie, Beat, Music
 
 def fileListFunc(filePathList):
     fileList = []
@@ -54,6 +54,11 @@ def forge():
             beat = Beat(name=str(file.title()))
             db.session.add(beat)
 
+    MUSICPATH="watchlist/static/musics"
+    for curDir, dirs, files in os.walk(MUSICPATH):
+        for file in files:
+            music = Music(name=str(file.title()))
+            db.session.add(music)
 
     db.session.commit()
     click.echo('Done.')
